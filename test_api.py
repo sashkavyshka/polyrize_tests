@@ -186,7 +186,7 @@ def test_get_last_obj():
         object_id = get_objects_ids(headers)[-1]
         # Endpoint: /api/poly/<object_id>
         # Method: GET
-        print(f'Getting the most recent created poly, which has the id: {object_id}')
+        print(f'Get the last created poly, which has the id: {object_id}')
         res = requests.get(f"{URL}/api/poly/{object_id}", headers=headers)
         got_poly = json.loads(res.text)
         print(json.dumps(res.json(), indent=4, default=str))
@@ -194,7 +194,7 @@ def test_get_last_obj():
     else:
         pytest.skip("Couldn't authorize")
 
-    assert example_poly == got_poly, "ERROR: poly got is different from poly saved!"
+    assert example_poly == got_poly, "Poly got is different from poly saved!"
 
 
 def test_delete_last_obj():
@@ -224,6 +224,7 @@ def test_delete_last_obj():
         pytest.skip("Couldn't authorize")
 
     assert status_code == 204, "The return code is different from expected!"
+    
 
 
 
