@@ -1,5 +1,6 @@
 from collections.abc import MutableSequence
 
+
 class MagicList(MutableSequence):
     """MagicList class"""
     def __init__(self, data=None):
