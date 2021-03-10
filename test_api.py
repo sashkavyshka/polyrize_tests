@@ -7,7 +7,7 @@ import requests
 import pytest
 import json
 
-SERVER_URL = "http://localhost:8000"
+URL = "http://localhost:8000"
 data = {
     "data": [{"key": "key1", "val": "val1", "valType": "str"}]
 }
@@ -30,7 +30,7 @@ def get_token(log_data):
         (str)token: the token or the empty string
     """
 
-    response = requests.post(f"{SERVER_URL}/api/auth/", json=log_data)
+    response = requests.post(f"{URL}/api/auth/", json=log_data)
 
     if response.status_code == 200:
         token = response.json()["access_token"]
@@ -49,7 +49,7 @@ def get_objects_ids(headers):
     """
     print('Getting a list of all poly object ids')
     object_ids = []
-    res = requests.get(f"{SERVER_URL}/api/poly/", headers=headers)
+    res = requests.get(f"{URL}/api/poly/", headers=headers)
     poly_objects = json.loads(res.text)
     for poly in poly_objects:
         object_ids.append(poly['object_id'])
@@ -63,7 +63,7 @@ def create_obj(headers):
     Returns:
         (obj) poly_object
     """
-    res = requests.post(f"{SERVER_URL}/api/poly/", json=data, headers=headers)
+    res = requests.post(f"{URL}/api/poly/", json=data, headers=headers)
     print(json.dumps(res.json(), indent=4, default=str))
     poly_object = json.loads(res.text)
     return poly_object
@@ -78,7 +78,7 @@ def delete_obj(object_id, headers):
     Returns:
         (int) response code
     """
-    res = requests.delete(f"{SERVER_URL}/api/poly/{object_id}", headers=headers)
+    res = requests.delete(f"{URL}/api/poly/{object_id}", headers=headers)
     return res.status_code
 
 
@@ -125,7 +125,7 @@ def test_get():
         # Endpoint: /api/poly
         # Method: GET
         print('Getting a list of all poly objects')
-        res = requests.get(f"{SERVER_URL}/api/poly/", headers=headers)
+        res = requests.get(f"{URL}/api/poly/", headers=headers)
         poly_objects = json.loads(res.text)
         print(f"Here are the objects! {poly_objects}")
         for poly in poly_objects:
@@ -187,7 +187,7 @@ def test_get_last_obj():
         # Endpoint: /api/poly/<object_id>
         # Method: GET
         print(f'Getting the most recent created poly, which has the id: {object_id}')
-        res = requests.get(f"{SERVER_URL}/api/poly/{object_id}", headers=headers)
+        res = requests.get(f"{URL}/api/poly/{object_id}", headers=headers)
         got_poly = json.loads(res.text)
         print(json.dumps(res.json(), indent=4, default=str))
         example_poly = {"data": data["data"], "object_id": object_id}
