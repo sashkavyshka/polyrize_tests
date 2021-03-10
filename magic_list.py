@@ -43,9 +43,9 @@ class MagicList(MutableSequence):
         self.insert(len(self._list), val)
 
 if __name__ == "__main__":
-    a = MyList()
+    a = MagicList()
     a[0] = 5
     print(a)
-    b = MyList()
+    b = MagicList()
     b[1] = 5
     print(b)
