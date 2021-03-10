@@ -4,6 +4,26 @@
 Clone the repository
 `git clone https://github.com/sashkavyshka/polyrize_tests.git`
 
+## magic_list.py: The first assignment
+### First option: Run python
+```from magic_list import *```
+Now you can create objects of type MagicList
+
+### Second option: run the whole file
+There is a basic test there:
+```
+    a = MagicList()
+    a[0] = 5
+    print(a)
+    b = MagicList()
+    b[1] = 5
+    print(b)
+```
+The test will print a and fail on b.
+
+
+## test_api.py: The second assignment
+
 ### Run the server.py - so you have what to test
 Clone the repository 
 `git clone https://github.com/polyrize/interview-server.git`
